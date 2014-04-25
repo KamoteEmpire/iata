@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no, maximum-scale=1.0, width=device-width">
+	<link rel="stylesheet" href="css/themes/my-custom-theme.min.css" />
+	<link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
+	<link rel="stylesheet" href="css/jquery.mobile.structure-1.4.2.min.css" />
+	<link rel="stylesheet" href="css/jquery.mobile.datepicker.css" />
+	<script src="js/jquery-1.10.2.min.js"></script>
+	<script src="js/jquery.mobile-1.4.2.min.js"></script>
+	<script src="js/jquery.ui.datepicker.js"></script>
+	<script src="js/jquery.mobile.datepicker.js"></script>
+	
+	<script type="text/javascript" src="cordova.js"></script>
+	
+	<script>
+	function logoutaccount()
+	{
+	localStorage.removeItem("datausername");
+	localStorage.removeItem("dataemail");
+	 $.mobile.changePage("index.html", { transition: "fade", changeHash: true});
+	}
+	</script>
+	
+	<script>
+$(document).ready(function(){
+ 
+	$('#submit').click(function(){
+		$.mobile.loading("show");
+		document.getElementById('txtUsername').value = localStorage.getItem('datausername');
+		document.getElementById('txtEmail').value = localStorage.getItem('dataemail');
+		$.post("http://gcccs.org/iata/sendemail.php", $("#inquireform").serialize(),  function(response) {
+		$('#success').html(response);
+		$("#popuptext").html(response);	
+							$( "#popupAfter" ).popup();
+							$( "#popupAfter" ).popup( "open", { 
+							positionTo: "window",
+							transition: "pop" });
+							$.mobile.loading("hide");
+	});
+		return false;
+ 
+	});
+ 
+});
+</script>
+
+
+	
+</head>
+<body  >
+
+
+<div data-role="page" data-theme="a" id="home">
+
+	<div data-role="panel" id="myPanel" data-display="push" data-swipe-close="true" data-theme="b">
+    		<ul data-role="listview" data-icon="false">
+			<li data-role="list-divider">Bookings</li>
+			<li data-role="collapsible" data-inset="false" data-iconpos="right">
+	          <h3>Flights</h3>
+	          <ul data-role="listview">
+	            <li><a href="#inquireDomestic">Domestic</a></li>
+	            <li><a href="#">International</a></li>
+	          </ul>
+	        </li><!-- /collapsible -->
+			<li><a href="#">Bus</a></li>
+			<li><a href="#">Hotel</a></li>
+						
+			</ul>
+	</div><!-- /panel -->
+	
+	<div data-role="header" id="my-header" data-theme="a">
+		<a href="#myPanel" data-icon="bars" class="ui-btn-left">Menu</a>
+		<h1>i@ATA</h1>
+		<a href="javascript:logoutaccount();" data-icon="gear" class="ui-btn-right">Logout</a>
+	</div><!-- /header -->
+
+	<div data-role="content" >
+		
+         <img src="logo-small.png" style="position:relative;width:100%;height:100%;margin-top:10%;margin-left:auto;margin-right:auto;display:block" />
+		
+		
+	</div><!-- /content -->
+
+	<div data-role="footer" data-position="fixed" data-theme="b">
+		<div data-role="navbar">
+        <ul>
+            <li><a href="https://twitter.com/intent/tweet?button_hashtag=i@ATA&text=You're%20online%20travel%20assistant%20@ABACATicketingAgency" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-twitter" target="_blank">Share i@ATA on Twitter</a></li>
+            
+        </ul>
+    </div><!-- /navbar -->
+	</div><!-- /footer -->
+</div><!-- /page -->
+
+<!-- page2 http://www.html5rocks.com/en/tutorials/forms/constraintvalidation/ -->
+
+
+<div data-role="page" id="inquireDomestic" data-theme="a" >
+
+	
+
+<div data-role="header" style="overflow:hidden;">
+<a href="https://twitter.com/intent/tweet?button_hashtag=i@ATA&text=You're%20online%20travel%20assistant%20@ABACATicketingAgency" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-twitter" target="_blank">Share</a></li>
+<h1>Bookings</h1>
+<a href="javascript:logoutaccount();" data-icon="gear" class="ui-btn-right">Logout</a>
+<div data-role="navbar">
+<ul>
+<li><a href="#" class="ui-btn-active ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-flight-domestic" >Domestic</a></li>
+<li><a href="#" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-flight-international" >International</a></li>
+<li><a href="#" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-bus" >Bus</a></li>
+<li><a href="#" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-hotel">Hotel</a></li>
+</ul>
+</div><!-- /navbar -->
+</div><!-- /header -->
+	
+	
+	
+
+
+	<div role="main" class="ui-content">
+		
+	<form action="" method="post" id="inquireform" >	
+		<h2>Philippine Airports:</h2>
+		<fieldset data-role="controlgroup" >
+		<select data-theme="b" name="selectDomesticFrom" id="selectDomesticFromID" data-native-menu="false">
+			<option value="">From:</option>
+			<option value="BCD">Bacolod</option>
+			<option value="MPH">Boracay (Caticlan)</option>
+			<option value="BXU">Butuan</option>
+			<option value="CGY">Cagayan De Oro</option>
+			<option value="CGM">Camiguin</option>
+			<option value="CYZ">Cauayan</option>
+			<option value="CEB">Cebu</option>
+			<option value="CRK">Clark</option>
+			<option value="USU">Coron (Busuanga)</option>
+			<option value="CBO">Cotabato</option>
+			<option value="DVO">Davao</option>
+			<option value="DPL">Dipolog</option>
+			<option value="DGT">Dumaguete</option>
+			<option value="GES">General Santos</option>
+			<option value="ILO">Iloilo</option>
+			<option value="KLO">Kalibo</option>
+			<option value="LAO">Laoag</option>
+			<option value="LGP">Legazpi</option>
+			<option value="MNL">Manila</option>
+			<option value="WNP">Naga</option>
+			<option value="OZC">Ozamiz</option>
+			<option value="PAG">Pagadian</option>
+			<option value="PPS">Puerto Princesa</option>
+			<option value="RXS">Roxas</option>
+			<option value="SJI">San Jose (Mindoro)</option>
+			<option value="IAO">Siargao</option>
+			<option value="SUG">Surigao</option>
+			<option value="TAC">Tacloban</option>
+			<option value="TAG">Tagbilaran</option>
+			<option value="TWT">Tawi-Tawi</option>
+			<option value="TUG">Tuguegarao</option>
+			<option value="VRC">Virac</option>
+			<option value="ZAM">Zamboanga</option>
+		</select>
+		</fieldset>
+		<small id="errorselectDomesticFrom" style="color:#ff0000;display:block"></small>
+		
+		<select data-theme="b" name="selectDomesticTo" id="selectDomesticTo" data-native-menu="false">
+			<option value="">To:</option>
+			<option value="BCD">Bacolod</option>
+			<option value="MPH">Boracay (Caticlan)</option>
+			<option value="BXU">Butuan</option>
+			<option value="CGY">Cagayan De Oro</option>
+			<option value="CGM">Camiguin</option>
+			<option value="CYZ">Cauayan</option>
+			<option value="CEB">Cebu</option>
+			<option value="CRK">Clark</option>
+			<option value="USU">Coron (Busuanga)</option>
+			<option value="CBO">Cotabato</option>
+			<option value="DVO">Davao</option>
+			<option value="DPL">Dipolog</option>
+			<option value="DGT">Dumaguete</option>
+			<option value="GES">General Santos</option>
+			<option value="ILO">Iloilo</option>
+			<option value="KLO">Kalibo</option>
+			<option value="LAO">Laoag</option>
+			<option value="LGP">Legazpi</option>
+			<option value="MNL">Manila</option>
+			<option value="WNP">Naga</option>
+			<option value="OZC">Ozamiz</option>
+			<option value="PAG">Pagadian</option>
+			<option value="PPS">Puerto Princesa</option>
+			<option value="RXS">Roxas</option>
+			<option value="SJI">San Jose (Mindoro)</option>
+			<option value="IAO">Siargao</option>
+			<option value="SUG">Surigao</option>
+			<option value="TAC">Tacloban</option>
+			<option value="TAG">Tagbilaran</option>
+			<option value="TWT">Tawi-Tawi</option>
+			<option value="TUG">Tuguegarao</option>
+			<option value="VRC">Virac</option>
+			<option value="ZAM">Zamboanga</option>
+		</select>
+		<small id="errorselectDomesticTo" style="color:#ff0000;display:block"></small>
+
+         <h2>Dates:</h2>
+
+        
+            <input type="text" name="txtDomesticDeparture" id="txtDomesticDeparture" data-role="date" placeholder="Departure" />
+			<small id="errortxtDomesticDeparture" style="color:#ff0000;display:block"></small>
+			<input type="text" name="txtDomesticReturn" id="txtDomesticReturn" data-role="date" placeholder="Return" />
+        
+			<input type="hidden" name="txtUsername" id="txtUsername" />
+			<input type="hidden" name="txtEmail" id="txtEmail" />
+		
+		<input type="submit" id="submit" data-theme="b" value="Inquire @ ATA" />
+	</form>
+	
+	
+	</div><!-- /content -->
+	
+	<div data-role="popup" id="popupAfter" data-theme="a"  style="width:300px">
+			<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+			<p id="popuptext"></p>
+	</div>
+	
+	
+	
+
+	<!--<div data-role="footer" data-position="fixed" data-theme="b">
+		<h4></h4>
+		
+	</div><!-- /footer -->
+</div><!-- /page -->
+
+
+
+</body>
+</html>
