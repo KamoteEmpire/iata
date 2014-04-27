@@ -131,6 +131,15 @@ $(document).ready(function(){
 	<div role="main" class="ui-content">
 		
 	<form action="" method="post" id="inquireform" >	
+		
+
+         <label>Dates:</label>
+
+        
+            <input type="text" onClick="hideKeyboard()" name="txtDomesticDeparture" id="txtDomesticDeparture" data-role="date" placeholder="Departure" />
+			<small id="errortxtDomesticDeparture" style="color:#ff0000;display:block"></small>
+			<input type="text" onClick="hideKeyboard()" name="txtDomesticReturn" id="txtDomesticReturn" data-role="date" placeholder="Return" />
+        
 		<fieldset data-role="controlgroup" >
 		<select data-theme="b" name="selectDomesticFrom" id="selectDomesticFromID" data-native-menu="false">
 			<option value="">From:</option>
@@ -208,17 +217,9 @@ $(document).ready(function(){
 			<option value="ZAM">Zamboanga</option>
 		</select>
 		<small id="errorselectDomesticTo" style="color:#ff0000;display:block"></small>
-
-         <h2>Dates:</h2>
-
-        
-            <input type="text" onClick="hideKeyboard()" name="txtDomesticDeparture" id="txtDomesticDeparture" data-role="date" placeholder="Departure" />
-			<small id="errortxtDomesticDeparture" style="color:#ff0000;display:block"></small>
-			<input type="text" onClick="hideKeyboard()" name="txtDomesticReturn" id="txtDomesticReturn" data-role="date" placeholder="Return" />
-        
 			<input type="hidden" name="txtUsername" id="txtUsername" />
 			<input type="hidden" name="txtEmail" id="txtEmail" />
-		
+		<br/>
 		<input type="submit" id="submit" data-theme="b" value="Inquire @ ATA" />
 	</form>
 	
