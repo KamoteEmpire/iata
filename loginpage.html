@@ -6,15 +6,22 @@
 	<link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
 	<link rel="stylesheet" href="css/jquery.mobile.structure-1.4.2.min.css" />
 	<link rel="stylesheet" href="css/jquery.mobile.datepicker.css" />
+	<link rel="stylesheet" href="css/animate.css" />
 	<script src="js/jquery-1.10.2.min.js"></script>
 	<script src="js/jquery.mobile-1.4.2.min.js"></script>
 	<script src="js/jquery.ui.datepicker.js"></script>
 	<script src="js/jquery.mobile.datepicker.js"></script>
+<script>
+	function animatelogo(){
+		$('#myLogo').addClass('animated bounceInLeft');
+		
+	}
+</script>	
 </head>
-<body>
+<body  onLoad="animatelogo()">
 	<div data-role="page" id="loginpage" data-theme="a" >
 			<div data-role="header" data-theme="f">
-			<img src="logo-small.png" style="width:80%;margin-left:auto;margin-right:auto;display:block">
+			<img src="logo-small.png" id="myLogo" style="width:70%;margin-left:auto;margin-right:auto;display:block">
 			</div>
 			<div role="main" class="ui-content">
 			<!--<div style="margin-left:auto;margin-right:auto;display:block;width:300px;">-->

@@ -24,17 +24,20 @@
 		<script type="text/javascript" src="js/jquery.validate.js"></script>
 		
 		<form id="signupform" action="javascript:sendtoajax();">
-		
-		<input type="text" name="txtFirstName" id="txtFirstName" placeholder="First Name"  />
-			<small id="errortxtFirstName" style="color:#ff0000;display:block"></small>
+		<fieldset class="ui-grid-a">
+		<div class="ui-block-a">
+		<input type="text"  name="txtFirstName" id="txtFirstName" placeholder="First Name"  />
+		</div>
 			
-		<input type="text" name="txtMiddleName" id="txtMiddleName" placeholder="Middle Name" />
-		
+		<div class="ui-block-b">	
+		<input type="text"  name="txtMiddleName" id="txtMiddleName" placeholder="Middle Name" />
+		</div>
+		<small id="errortxtFirstName" style="color:#ff0000;display:block"></small>
+		</fieldset>
 		<input type="text" name="txtLastName" id="txtLastName" placeholder="Last Name"  />
 			<small id="errortxtLastName" style="color:#ff0000;display:block"></small>
 			
-		<input type="text" name="txtSuffix" id="txtSuffix" placeholder="Suffix" />
-		
+		<label>Birthdate:</label>
 		<fieldset data-role="controlgroup" data-type="horizontal">
 				<select name="bdaym" id="mbirth" data-mini="true">
 					<option value="01">January</option>
@@ -168,11 +171,23 @@
 			<small id="errortxtCpass" style="color:#ff0000;display:block"></small>
 		
 		<label>Address:</label>
+		<fieldset class="ui-grid-a">
+		<div class="ui-block-a">
 		<input type="text" name="txtStreet" id="txtStreet" placeholder="Street" />
+		</div>
+		<div class="ui-block-b">
 		<input type="text" name="txtBarangay" id="txtBarangay" placeholder="Barangay" />
-		<input type="text" name="txtCity" id="txtCity" placeholder="City" />
-		<input type="text" name="txtProvince" id="txtProvince" placeholder="Province" />
+		</div>
+		</fieldset>
+		<fieldset class="ui-grid-a">
+		<div class="ui-block-a">
+		<input type="text" name="txtCity" id="txtCity" placeholder="Town/City" />
+		</div>
+		<div class="ui-block-b">
 		<input type="text" name="txtZipcode" id="txtZipcode" placeholder="Zipcode" />
+		</div>
+		</fieldset>
+		<input type="text" name="txtProvince" id="txtProvince" placeholder="Province" />
 		<input type="submit" data-theme="b" value="Register" >
 		
 		</form>
@@ -281,7 +296,8 @@
 					$.mobile.loading("show");
 					$.getJSON("http://gcccs.org/iata/uregister.php?callback=?", form.serialize(),function(data)
 					{
-						alert("Registration Complete!");
+						alert("Congratulations. Registration Complete! Welcome to i@ATA");
+						
 						
 						$.mobile.changePage( "loginpage.html", { changeHash: true });
 						$.mobile.loading("hide");
